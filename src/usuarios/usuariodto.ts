@@ -4,4 +4,5 @@ export class usuarioDto{
     readonly correo: string;
     readonly clave: string;
     readonly tipo: string;
+    readonly estado: string;
 }

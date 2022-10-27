@@ -8,7 +8,7 @@ export class CursoController {
     constructor(private CursoService: CursoService) {}
 @Get(':id')
 getCurso(@Param('id', ParseIntPipe) id:number){
-    return this.CursoService.getCurso(id);
+   // return this.CursoService.getCurso(id);
 }
 
 

@@ -19,4 +19,7 @@ export class Usuario {
 
   @Column()
   tipo: string;
+
+  @Column()
+  estado: string;
 }

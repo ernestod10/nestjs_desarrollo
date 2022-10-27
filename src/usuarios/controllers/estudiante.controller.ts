@@ -27,14 +27,14 @@ export  class EstudianteController {
 
     @Delete(':id')
     deleteEstudiante(@Param('id') id: string): Promise<any> {
-        return this.estudianteService.deletePersona(id);
+        return this.estudianteService.deletePersona(id,'estudiante');
     }
 
     @Put(':id')
     updateEstudiante(@Param('id') id: string, @Body() newPersona: usuarioDto): Promise<Usuario> {
         return this.estudianteService.updatePersona(id, newPersona);
     }
-    
+
 
 
 }

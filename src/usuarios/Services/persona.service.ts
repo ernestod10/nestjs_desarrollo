@@ -22,12 +22,17 @@ createPersona(newPersona: usuarioDto, tipo: string): Promise<Usuario> {
     user.correo = newPersona.correo;
     user.clave = newPersona.clave;
     user.tipo = tipo;
+    user.estado = 'activo';
     return this.userRepository.save(user);
 }
 
-async deletePersona(idu: string){
-    return await this.userRepository.delete({id:parseInt(idu)});
-
+async deletePersona(idu: string, type:string){
+    return await this.userRepository.createQueryBuilder()
+    .delete()
+    .from(Usuario)
+    .where("id = :id", { id: parseInt(idu) })
+    .andWhere("tipo = :tipo", { tipo: type })
+    .execute();
 }
 
 async updatePersona(id: string, newPersona: usuarioDto){

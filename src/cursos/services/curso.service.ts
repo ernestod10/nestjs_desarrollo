@@ -1,9 +1,17 @@
-import { Injectable } from '@nestjs/common';
-
+import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Curso } from '../curso.entity';
+import { cursoDto } from '../cursodto';
 @Injectable()
 export class CursoService {
+    constructor(
+        @InjectRepository(Curso) private cursoRepository: Repository<Curso>,
+    ){}
 
-    getCurso(id:number){
+
+
+    /*getCurso(id:number){
         return('Curso con id: ' + id);
     }
     getCursos(){
@@ -20,5 +28,5 @@ export class CursoService {
     
     updateCurso(id: number, newCurso: any){
         return newCurso;
-    }
+    }*/
 }

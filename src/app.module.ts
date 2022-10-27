@@ -1,22 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PersonaService } from './persona/persona.service';
-import { PersonaController } from './persona/persona.controller';
-import { CursoService } from './curso/curso.service';
-import { CursoController } from './curso/curso.controller';
-import { LeccionService } from './leccion/leccion.service';
-import { LeccionController } from './leccion/leccion.controller';
-import { EstudianteService } from './estudiante/estudiante.service';
-import { EstudianteController } from './estudiante/estudiante.controller';
-import { ProfesorService } from './profesor/profesor.service';
-import { ProfesorController } from './profesor/profesor.controller';
-import { AdminService } from './admin/admin.service';
-import { AdminController } from './admin/admin.controller';
-
+import { configService } from '../config/config.service';
+import { CursosModule } from './cursos/cursos.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Usuario } from './usuarios/usuario.entity';
 @Module({
-  imports: [],
-  controllers: [AppController, PersonaController, CursoController, LeccionController, EstudianteController, ProfesorController, AdminController],
-  providers: [AppService, PersonaService, CursoService, LeccionService, EstudianteService, ProfesorService, AdminService],
+  imports: [
+    CursosModule,
+    UsuariosModule,
+    TypeOrmModule.forRoot(
+      configService.getTypeOrmConfig(),
+    )
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

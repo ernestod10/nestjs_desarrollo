@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {PersonaService} from '../persona/persona.service'
+import {PersonaService} from '../usuarios/services/persona.service'
 
 @Injectable()
-export class AdminService<R,C>  extends PersonaService<R,C> {}
+export class AdminService  extends PersonaService {}

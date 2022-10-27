@@ -4,5 +4,5 @@ export class cursoDto{
     readonly categoria: string;
     readonly tags: string;
     readonly estado: string;
-    readonly profesor: number;
+   // readonly profesor: number;
 }

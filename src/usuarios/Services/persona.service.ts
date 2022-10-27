@@ -6,7 +6,7 @@ import { usuarioDto } from '../usuariodto';
 @Injectable()
 export class PersonaService {
     constructor(
-        @InjectRepository(Usuario) private userRepository: Repository<Usuario>, 
+        @InjectRepository(Usuario) protected userRepository: Repository<Usuario>, 
       ) {}
 
 async findAll(params: any): Promise<Usuario[]> {

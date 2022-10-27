@@ -1,16 +1,36 @@
-import { Get, Param, ParseIntPipe } from '@nestjs/common';
-import { Controller } from '@nestjs/common';
+import { Controller,Get,Req,Res, Param, Post, Body, Delete, Put }  from '@nestjs/common';
+import { Request } from 'express';
 import { CursoService } from '../services/curso.service';
+import { Curso } from '../curso.entity';
 
 @Controller('curso')
 export class CursoController {
 
     constructor(private CursoService: CursoService) {}
-@Get(':id')
-getCurso(@Param('id', ParseIntPipe) id:number){
-   // return this.CursoService.getCurso(id);
+
+@Get()
+findAll(@Req() request: Request): Promise<Curso[]> {
+    return this.CursoService.findAll(request.query);
 }
 
+@Get(':id')
+findCurso(@Param('id') id: string): Promise<Curso> {
+    return this.CursoService.findCurso(parseInt(id));
+}
 
+@Post()
+createCurso(@Body() newCurso: Curso): Promise<Curso> {
+    return this.CursoService.createCurso(newCurso);
+}
+
+@Delete(':id')
+deleteCurso(@Param('id') id: string): Promise<any> {
+    return this.CursoService.deleteCurso(id);
+}
+
+@Get(':busqueda')
+searchCurso(@Param('busqueda' ) busqueda: string): Promise<Curso[]> {
+    return this.CursoService.buscarCurso(busqueda);
+}
 
 }

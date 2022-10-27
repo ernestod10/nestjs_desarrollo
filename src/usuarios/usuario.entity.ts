@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Curso } from '../cursos/curso.entity';
 @Entity()
 export class Usuario {
   @PrimaryGeneratedColumn() 
@@ -22,4 +22,7 @@ export class Usuario {
 
   @Column()
   estado: string;
+  @OneToMany(()=> Curso, (curso) => curso.profesor)
+  curso: Curso[];
+
 }

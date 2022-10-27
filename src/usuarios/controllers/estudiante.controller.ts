@@ -3,7 +3,7 @@ import { EstudianteService } from '../services/estudiante.service';
 import { Request } from 'express';
 import { Usuario } from '../usuario.entity';
 import { usuarioDto } from '../usuariodto';
-
+import { Curso } from '../../cursos/curso.entity';
 @Controller('estudiantes')
 export  class EstudianteController {
 
@@ -35,6 +35,9 @@ export  class EstudianteController {
         return this.estudianteService.updatePersona(id, newPersona);
     }
 
-
+    @Post()
+    inscribirse(@Body() idc: string, ide: string): Promise<any> {
+        return this.estudianteService.inscribirCurso(ide, idc);
+    }
 
 }
